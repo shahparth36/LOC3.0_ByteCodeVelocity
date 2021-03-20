@@ -7,17 +7,17 @@ const Student = require('../models/Student');
 const Teacher = require('../models/Teacher');
 
 router.get('/login', async (req, res) => {
-    // redirect login registration page
+    res.render('login');
 });
 
 router.post('/login', passport.authenticate('local', {failureRedirect: '/login'}), async (req, res) => {
     if (req.user.isStudent) 
-        return res.send('student signed in successfully');
-    return res.send('teacher signed in succssfully');
+        return res.redirect('/student-home');
+    return res.redirect('/teacher-home');
 });
 
 router.get('/student-registration', async (req, res) => {
-    // redirect student registration page
+    return res.render('registerStudent');
 });
 
 router.post('/student-registration', async (req, res) => {
@@ -38,11 +38,11 @@ router.post('/student-registration', async (req, res) => {
     });
     
     await Student.create(newStudent);
-    return res.send('created user successfully');
+    return res.redirect('/login');
 });
 
 router.get('/teacher-registration', async (req, res) => {
-    // redirect teacher-registration page
+    return res.render('registerTeacher');
 });
 
 router.post('/teacher-registration', async (req, res) => {
@@ -63,7 +63,7 @@ router.post('/teacher-registration', async (req, res) => {
     });
 
     await Teacher.create(newTeacher);
-    return res.send('created user successfully');
+    return res.redirect('/login');
 });
 
 module.exports = router;
