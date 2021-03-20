@@ -10,6 +10,9 @@ const LocalStrategy = require('passport-local').Strategy;
 const Student = require('./models/Student');
 const Teacher = require('./models/Teacher');
 
+const authRoutes = require('./routes/auth');
+const teacherRoutes = require('./routes/teacher');
+
 mongoose.connect('mongodb://localhost/loc', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -73,9 +76,9 @@ passport.use(new LocalStrategy({
     });
 }));
 
-const authRoutes = require('./routes/auth');
 
 app.use(authRoutes);
+app.use(teacherRoutes);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is listening on PORT ${process.env.PORT}`);

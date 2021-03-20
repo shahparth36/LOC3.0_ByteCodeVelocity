@@ -9,7 +9,11 @@ const TeacherSchema = new mongoose.Schema({
     gender: String,
     contactNo: Number,
     isStudent: Boolean,
-    isTeacher: Boolean
+    isTeacher: Boolean,
+    createdClassrooms: [{
+        type      : mongoose.Schema.Types.ObjectId,
+        ref       : "Classroom"
+    }]
 });
 
 module.exports = mongoose.model('Teacher', TeacherSchema);
