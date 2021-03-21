@@ -51,7 +51,7 @@ router.post('/create-classroom', async (req, res) => {
             createdBy: foundTeacher.firstName + " " + foundTeacher.lastName,
             description: req.body.description,
             uniqueCode: uniqueCode,
-            meetingLink: `/${uniqueCode}`,
+            meetingLink: `${uniqueCode}`,
         });
         const classroomCreated = await Classroom.create(newClassroom);
 
