@@ -88,13 +88,13 @@
 
     <!-- jumbotron -->
     <div style="width: 70%; " class="jumbotron m-3 mx-auto rounded-lg shadow-lg" style="background-color: #ffffff;">
-      <h2 class="display-4" style="text-align: center;">My Teams</h2>
+      <h2 class="display-4" style="text-align: center;">My Classroom</h2>
       <hr style="width: 400px;margin: 0 auto;">
-    <p style="text-align: center; margin-top: 15px;">You can view all the teams you joined here.</p>
+    <p style="text-align: center; margin-top: 15px;">You can view all the Classrooms you joined here.</p>
 
     <div class="text-center">
     <button style=" background-color: #548362; padding: 10px 10px;font-size: 16px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-      Click to Join Team
+      Click to Join Classroom
     </button>
 </div>
   
@@ -103,7 +103,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Join a New Team</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Join a New Classroom</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -111,7 +111,7 @@
             <form action="/join-classroom/<%= student._id %>" method="POST">
             <div class="modal-body">
                 <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">Enter the team code</label>
+                  <label for="recipient-name" class="col-form-label">Enter the Classroom code</label>
                   <input type="text" name="uniqueCode" class="form-control" id="recipient-name">
                 </div>
               </div>
@@ -120,7 +120,7 @@
                 <button type="submit" style="background-color: #548362;
               color: #fff;
               padding: 5px 5px;
-              font-size: 14px;"class="btn ">Join the Team</button>
+              font-size: 14px;"class="btn ">Join the Classroom</button>
             </div>
           </form>
           </div>
