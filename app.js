@@ -22,7 +22,7 @@ const authRoutes = require('./routes/auth');
 const teacherRoutes = require('./routes/teacher');
 const studentRoutes = require('./routes/student');
 
-mongoose.connect('mongodb://localhost/LOC1', {
+mongoose.connect("mongodb+srv://rushi:rushi@01@cluster0.0zckj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
