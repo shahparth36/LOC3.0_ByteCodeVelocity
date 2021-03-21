@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/teacherHome.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+   crossorigin="anonymous">
+   
+   <script src="https://kit.fontawesome.com/7414e22221.js" crossorigin="anonymous"></script>
+
+   <!-- <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js">  -->
+    <!-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"></script> -->
+    <!-- <link href="bootstrap/js/bootstrap.min.js" rel="stylesheet" media="screen">
+    <link href="bootstrap/js/bootstrap-modal.js" rel="stylesheet" media="screen">
+    <link href="bootstrap/js/bootstrap-transition.js" rel="stylesheet" media="screen"> -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" /> -->
+  <title>Teacher Home Page</title>
+  <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,500&amp;subset=latin-ext" rel="stylesheet"> -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
+</head>
+
+<style>
+  html {
+    font-size: 14px;
+  }
+  
+  .container {
+    font-size: 14px;
+    color: #666666;
+    font-family: "Open Sans";
+  }
+</style>
+
+<body>
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3c5344ee; z-index: 1;padding: 8px 16px;margin-bottom: 40px;">
+    <a class="navbar-brand" href="/">
+      <svg width="24px" height="24px" style="margin-right:15px;font-size:20px;"xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bezier" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M0 10.5A1.5 1.5 0 0 1 1.5 9h1A1.5 1.5 0 0 1 4 10.5v1A1.5 1.5 0 0 1 2.5 13h-1A1.5 1.5 0 0 1 0 11.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm10.5.5A1.5 1.5 0 0 1 13.5 9h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM6 4.5A1.5 1.5 0 0 1 7.5 3h1A1.5 1.5 0 0 1 10 4.5v1A1.5 1.5 0 0 1 8.5 7h-1A1.5 1.5 0 0 1 6 5.5v-1zM7.5 4a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/>
+        <path d="M6 4.5H1.866a1 1 0 1 0 0 1h2.668A6.517 6.517 0 0 0 1.814 9H2.5c.123 0 .244.015.358.043a5.517 5.517 0 0 1 3.185-3.185A1.503 1.503 0 0 1 6 5.5v-1zm3.957 1.358A1.5 1.5 0 0 0 10 5.5v-1h4.134a1 1 0 1 1 0 1h-2.668a6.517 6.517 0 0 1 2.72 3.5H13.5c-.123 0-.243.015-.358.043a5.517 5.517 0 0 0-3.185-3.185z"/>
+      </svg>
+      <span class="biggy" id="font">EDUFUN</span>
+    </a>
+
+    <!-- collapse button -->
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="navbar-toggler-icon"><span></span><span></span><span></span></div>
+    </button>
+    <!-- !collapse button -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- right end -->
+      <ul class="navbar-nav ml-auto">
+<!-- Button trigger modal -->
+<!-- Button HTML (to Trigger Modal) -->
+    
+   
+    <!-- Modal HTML -->
+   
+    <!-- <a class="nav-link active mr-3"style="font-size: 18px;"  href="teacherquiz.html"><i class="fas fa-sign-in-alt mr-2 pd-3"></i>Assignments</a> -->
+        <!-- <a class="nav-link active mr-3" style="font-size: 18px;" href="/login"><i class="fas fa-user-plus mr-2"></i>Your Teams</a> -->
+        <a class="nav-link active mr-3"style="font-size: 18px;"  href="/logout"><i class="fas fa-sign-in-alt mr-2 pd-3"></i>Logout</a>
+        
+    </div>
+  </nav>
+
+  <!-- modal -->
+  
+  
+
+  <!-- modal ends -->
+
+    <!-- jumbotron -->
+    <div style="width: 70%; " class="jumbotron m-3 mx-auto rounded-lg shadow-lg" style="background-color: #ffffff;">
+      <h2 class="display-4" style="text-align: center;">Your Classroom</h2>
+      <hr style="width: 200px;margin: 0 auto;">
+    <p style="text-align: center; margin-top: 15px;">You can view all the Classrooms you created here.</p>
+
+    <button style="margin-left: 410px; background-color: #548362; padding: 10px 10px;font-size: 16px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+      Click to Create Classroom
+    </button>
+  
+
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Creating New Classroom</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="/create-classroom" method="POST">
+              <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Classroom Name</label>
+                    <input type="text" class="form-control" id="recipient-name" name="subject">
+                    <input type="hidden" value="<%= teacher._id %>" name="teacherID">
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Description</label>
+                    <textarea class="form-control" id="message-text" name="description"></textarea>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard</button>
+                <button type="submit" class="btn btn-primary">Create Your Classroom</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+     <div class="container">
+    <div class="row pt-5 m-auto">
+      <% classrooms.forEach((element) => { %>
+        <div class="col-md-6 col-lg-4 pb-3">
+          <!-- Copy the content below until next comment -->
+          <div class="card card-custom bg-white border-white border-0">
+            <div class="card-custom-img" style="background-image: url(http://res.cloudinary.com/d3/image/upload/c_scale,q_auto:good,w_1110/trianglify-v1-cs85g_cc5d2i.jpg);"></div>
+            
+            <div class="card-body" style="overflow-y: auto">
+              <h4 class="card-title"><%= element.subject %></h4>
+              <hr>
+              <% if(element.description.length < 20) { %>
+              <p class="card-text">Description : <%= element.description %></p>
+              <% } else { %>
+                <p class="card-text">Description : <%= element.description.substring(0,20) %>...</p>
+              <% } %>    
+              <hr>
+              <h6>Meeting link :<a href='https://educationfun.herokuapp.com/<%= element.meetingLink %>'>Join the meet</a> </h6>
+              <hr>
+            </div>
+            <div class="card-footer" style="background: inherit; border-color: inherit;">
+              <a href="/view-classroom/<%= element.uniqueCode %>/<%= teacher._id %>" style="margin-top: -40px; align-items: center;margin-left: 95px;"class="btn btn-outline-success">View Classroom</a>
+            </div>
+          </div>
+          <!-- Copy until here -->
+
+        </div>
+      <% }) %>
+  </div>
+</div>
+  
+  
+  
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script> -->
+</body>
+
+
+</html>

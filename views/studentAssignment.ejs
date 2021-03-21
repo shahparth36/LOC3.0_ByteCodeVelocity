@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+  
+    <link rel="stylesheet" href="/stylesheets/studentAssignments.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+	
+</head>
+
+<body>
+    
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3c5344ee; z-index: 1;padding: 8px 16px;margin-bottom: 40px;">
+    <a class="navbar-brand" href="/">
+      <svg width="24px" height="24px" style="margin-right:15px;font-size:20px;"xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bezier" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M0 10.5A1.5 1.5 0 0 1 1.5 9h1A1.5 1.5 0 0 1 4 10.5v1A1.5 1.5 0 0 1 2.5 13h-1A1.5 1.5 0 0 1 0 11.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm10.5.5A1.5 1.5 0 0 1 13.5 9h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM6 4.5A1.5 1.5 0 0 1 7.5 3h1A1.5 1.5 0 0 1 10 4.5v1A1.5 1.5 0 0 1 8.5 7h-1A1.5 1.5 0 0 1 6 5.5v-1zM7.5 4a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/>
+        <path d="M6 4.5H1.866a1 1 0 1 0 0 1h2.668A6.517 6.517 0 0 0 1.814 9H2.5c.123 0 .244.015.358.043a5.517 5.517 0 0 1 3.185-3.185A1.503 1.503 0 0 1 6 5.5v-1zm3.957 1.358A1.5 1.5 0 0 0 10 5.5v-1h4.134a1 1 0 1 1 0 1h-2.668a6.517 6.517 0 0 1 2.72 3.5H13.5c-.123 0-.243.015-.358.043a5.517 5.517 0 0 0-3.185-3.185z"/>
+      </svg>
+      <span class="biggy" id="font">EDUFUN</span>
+    </a>
+
+    <!-- collapse button -->
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="navbar-toggler-icon"><span></span><span></span><span></span></div>
+    </button>
+    <!-- !collapse button -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- right end -->
+      <ul class="navbar-nav ml-auto">
+<!-- Button trigger modal -->
+<!-- Button HTML (to Trigger Modal) -->
+    
+   
+    <!-- Modal HTML -->
+   
+    <a class="nav-link active mr-3"style="font-size: 18px;"  href="/student-home/<%= student_id %>"><i class="fas fa-users mr-2 pd-3"></i>My Classrooms</a>
+        <!-- <a class="nav-link active mr-3" style="font-size: 18px;" href="/login"><i class="fas fa-user-plus mr-2"></i>Your Teams</a> -->
+        <a class="nav-link active mr-3"style="font-size: 18px;"  href="/logout"><i class="fas fa-sign-in-alt mr-2 pd-3"></i>Logout</a>
+        
+    </div>
+  </nav>
+  
+
+  <div style="width: 70%; " class="jumbotron m-3 mx-auto rounded-lg shadow-lg" style="background-color: #ffffff; margin-bottom: 40px;">
+    <h2 class="display-4" style="text-align: center;">Assignments</h2>
+    <hr style="width: 200px;margin: 0 auto;">
+  <p style="text-align: center; margin-top: 15px;">You can view all the Classrooms you created here.</p>
+  </div>
+  <!-- <div style="text-align: center;background-color: #e9ecef;width: fit-content;margin: 0 auto;padding: 30px 170px;border-radius: 25px;">
+  <h1>Assignments</h1>
+  </div> -->
+
+
+    
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-5 col-lg-4 col-xl-3">
+                    <div  id="myCard" class="card text-center">
+                        <div style="margin-top: -50px;"class="card-body">        
+                        </div>
+                        <div>
+                        <ul  class="list-group list-group-flush">
+                            <a id="activeProfile" class="list-group-item " >Assigned</a>
+                            <a id="activeSettings" class="list-group-item active">Completed</a>
+                            
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+                <div style="margin-top: -4px;" id="settingsDiv" class="col-md-7 col-lg-8 col-xl-9 ">
+                    <div class="row d-flex justify-content-center justify-content-lg-start" id="firstRow">
+                        <form action="" method="POST">
+                            <% classroom.assignments.forEach((assignment) => { %>
+                                <% if (assignment.hasSubmitted) { %>
+                                    <div style="margin: 15px 20px;"class="card">
+                                        <div class="card-body">
+                                            <div style="display: inline-block;">
+                                            <h4 class="card-title"><%= assignment.title %></h4>
+                                            </div>
+                                            
+                                            <br>
+                                            <div style="display: inline-block;">
+                                             <%= classroom.subject %>   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                                <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                              </svg>Due Date:  <%= assignment.dueDate.toLocaleString() %>
+                                              
+                                              
+                                        </div>
+                                        <div style="display: inline-block;margin-left: 480px;">
+                                            <p class="card-title"><%= assignment.points%> points</p>
+                                            </div> 
+                                                
+                                        </div>                                 
+                                    </div> 
+                                <% } %>
+                            <% }) %>
+                        </form>
+                    </div>
+                    
+                </div>
+                <div style="margin-top: -4px;" id="editDiv" class="col-md-7 col-lg-8 col-xl-9 ">
+                    <div class="row d-flex justify-content-center justify-content-lg-start" id="firstRow">
+                        <% classroom.assignments.forEach((assignment) => { %>
+                            <% if (assignment.hasSubmitted == false) { %>
+                                <form action="/submit-answer/<%= assignment._id %>/<%= student_id %>" method="POST" enctype="multipart/form-data">
+                            <div style="margin: 15px 20px;"class="card">
+                                <div class="card-body">
+                                    <div style="display: inline-block;">
+                                    <h4 class="card-title"><%= assignment.title %></h4>
+                                    </div>
+                                    <br>
+                                    <div style="display: inline-block;">
+                                    <%= classroom.subject %>   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                    </svg>  Due Date: <%= assignment.dueDate.toLocaleString() %>.
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                                        <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                                    </svg>
+                                    <div style="display: inline-block;">
+                                        <p class="card-title"><%= assignment.points %> points</p>
+                                        </div> 
+                                </div>
+                                <hr>
+                                <div class="mb-1">
+                                    <label for="recipient-name" class="col-form-label"><%= assignment.instructions %></label>
+                                </div>
+                                <div class="mb-1">
+                                <label for="recipient-name" class="col-form-label"><a href="<%= assignment.pdfLink %>">Attachment</a></label>
+                                </div>
+                                <div class="mb-1">
+                                    <label for="message-text" class="col-form-label">Upload Your Work </label>
+                                    <input type="file"  style="margin-bottom: 5px;"class="form-control" name="pdf" id="message-text">
+                                </div>
+                                <button style="background-color: #548362; color: #fff;" type="submit" class="btn ">Submit</button>        
+                                </div>
+                                
+                            </div>  
+                            </form> 
+                            <% } %>
+                        <% }) %>
+                    </div>
+                </div>    
+            </div>
+        </div>
+      
+        <script src="/scripts/studentAssignments.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>    
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+</body>
+</html>

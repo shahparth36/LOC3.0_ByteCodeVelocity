@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+   crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/7414e22221.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/stylesheets/login.css">
+  
+  <title>Login</title>
+</head>
+<body>
+
+  <!-- navbar -->
+  <nav  class="navbar navbar-expand-lg navbar-dark" style="background-color: #5d8168d9; z-index: 1;">
+    <a class="navbar-brand" href="/">
+      <svg width="24px" height="24px" style="margin-right:15px;font-size:20px;"xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bezier" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M0 10.5A1.5 1.5 0 0 1 1.5 9h1A1.5 1.5 0 0 1 4 10.5v1A1.5 1.5 0 0 1 2.5 13h-1A1.5 1.5 0 0 1 0 11.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm10.5.5A1.5 1.5 0 0 1 13.5 9h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM6 4.5A1.5 1.5 0 0 1 7.5 3h1A1.5 1.5 0 0 1 10 4.5v1A1.5 1.5 0 0 1 8.5 7h-1A1.5 1.5 0 0 1 6 5.5v-1zM7.5 4a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/>
+        <path d="M6 4.5H1.866a1 1 0 1 0 0 1h2.668A6.517 6.517 0 0 0 1.814 9H2.5c.123 0 .244.015.358.043a5.517 5.517 0 0 1 3.185-3.185A1.503 1.503 0 0 1 6 5.5v-1zm3.957 1.358A1.5 1.5 0 0 0 10 5.5v-1h4.134a1 1 0 1 1 0 1h-2.668a6.517 6.517 0 0 1 2.72 3.5H13.5c-.123 0-.243.015-.358.043a5.517 5.517 0 0 0-3.185-3.185z"/>
+      </svg>
+      <span class="biggy" id="font">EDUFUN</span>
+    </a>
+
+    <!-- collapse button -->
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="navbar-toggler-icon"><span></span><span></span><span></span></div>
+    </button>
+    <!-- !collapse button -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- right end -->
+      <ul class="navbar-nav ml-auto">
+        <a class="nav-link active mr-3" href="#aboutus">About Us</a>
+        <a class="nav-link active mr-3" href="#courses">Courses</a>
+        <a class="nav-link active mr-3" href="#stories">Features</a>
+        <a class="nav-link active mr-3" href="#hero"><i class="fas fa-sign-in-alt mr-2 pd-3"></i>Login</a>
+        <!-- <a class="nav-link active mr-3" href="/getting-started"><i class="fas fa-user-plus mr-2"></i>Signup</a> -->
+        
+    </div>
+  </nav>
+
+  <!-- navbar -->
+
+  <!-- login -->
+  <section id="hero" style="margin-top: -20px;">
+    <div class="container hero-wrap">
+      <div class="quote-wrap">
+        <h1 style="font-size: 32px;color: #fff;">Welcome to Classroom</h1><br>
+        <p style="color: #fff;">The Virtual Classroom website enables teachers and students to conduct and attend online classes, anytime, anywhere. Log in the Virtual Classroom to access a wide range of easy-to-use and innovative teaching and learning tools that help you collaborate in the Virtual Classroom environment.</p>
+        
+      </div>
+      <div class="login-wrap">
+        <div class="login-wrap-box">
+          <div class="login-title">
+            <h3 style="color: #fff;">Login</h3>
+            <p>Sign in to your account to continue</p>
+          </div>
+
+          <form action="/login" method="POST">
+            <!-- <p>
+              <label for="email">Email address</label>
+              <input type="email" placeholder="name@example.com">
+            </p> -->
+            <!-- <div class="col-1"> -->
+                <div class="input-group">
+                    <label class="label" style="color: white;">Email</label>
+                    <input  style="background-color: #1E2E3D;"class="input--style-4" placeholder="name@example.com"type="email" name="email">
+                </div>
+            <!-- </div> -->
+            <p>
+              <div class=" input-group" style="margin-bottom: 8px;">
+                <label for="password" style="color: white;">Password</label>
+                <!-- <a href="forgotpassword.html">Forgot password?</a> -->
+              </div>
+              <!-- <input type="password" placeholder="Password"> -->
+              <input id="password-field" name="password" style="background-color: #1E2E3D;margin-top: -15px;"class="input--style-4" type="password" class="form-control" placeholder="Password" >
+
+
+              <!-- <span class="pas"> <i class="fa fa-key" aria-hidden="true"></i> -->
+                <!-- <input class="pass2" minlength="8" type="password" placeholder="Password" name="password" id="password-field1" required /> -->
+              <!-- <span
+                toggle="#password-field1"
+                class="fa fa-fw fa-eye field-icon"
+                id="toggle-password1"
+              ></span> -->
+              
+              <span toggle="#password-field" style="float: right;
+              margin-left: -75px;
+              padding-right: 30px;
+              margin-top: 4px;
+              position: relative;
+              z-index: 1;" class="fa fa-fw fa-eye field-icon toggle-password"></span> 
+              
+            </p>
+            <p>
+              <button class="btn-submit" type="submit">Sign in</button>
+            </p>
+          </form>
+        
+          <p style="text-align: center;color:white" class="not-regis">Not registered?</p>
+         <span> <p style="text-align: center;color: white;"class="not-regis"><a href="/student-registration">Register as a Student</a>  or  <a href="/teacher-registration">Register as a teacher</a></p></span>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- login -->
+
+  <!-- about us -->
+  <div class="section margin-top_50" id="aboutus">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 layout_padding_2">
+                <div class="full">
+                    <div class="heading_main text_align_left">
+           <h2>About Us</h2>
+                    </div>
+        <div class="full">
+          <p>Virtual classrooms are becoming one of the most significant and inevitable elements of
+             today’s learning platform. That is why today’s education has moved way far from one-sided 
+             teacher lectures to interacting learning sessions.We here try to deliver the best of online
+            teaching-learning experience to our users.</p>
+        </div>
+        <div class="full">
+           <!-- <a class="hvr-radial-out button-theme" href="#">About more</a> -->
+        </div>
+                </div>
+            </div>
+    <div class="col-md-6">
+                <div style="margin-top: 60px;"class="full">
+                    <img src="images/aboutus.jpg" alt="#" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  <!-- about -->
+  <!-- pop courses -->
+  <div class="section layout_padding" id="courses">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full">
+                    <div class="heading_main text_align_center">
+           <h2>Popular Course Subjects</h2>
+                    </div>
+        </div>
+            </div>
+        <div class="col-md-4">
+                <div class="full blog_img_popular">
+                   <img style="height: 239.43px;" class="img-responsive" src="images/aoa.jpg"  /> 
+                    <h4>Analysis of Algorithm</h4>
+                </div>
+            </div>
+        <div class="col-md-4">
+                <div class="full blog_img_popular">
+                    <img class="img-responsive" src="images/chem.jpg"alt="#" />
+        <h4>chemistry</h4>
+                </div>
+            </div>
+        <div class="col-md-4">
+                <div class="full blog_img_popular">
+                    <img class="img-responsive" src="images/cn.jpg" alt="#" />
+                    <h4>Computer Networks</h4>
+                </div>
+        </div>
+        <div class="col-md-4">
+          <div class="full blog_img_popular">
+              <img class="img-responsive" src="images/math.jpg" alt="#" />
+              <h4>Mathematics</h4>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="full blog_img_popular">
+              <img class="img-responsive" src="images/mech.jpg" alt="#" />
+              <h4>Mechanics</h4>
+          </div>
+      </div>
+      <div class="col-md-4">
+        <div class="full blog_img_popular">
+            <img  class="img-responsive" src="images/elec.jpg" alt="#" />
+            <h4>Electricals</h4>
+        </div>
+      </div>
+              </div>
+          </div>
+      </div>
+
+  <!-- pop courses -->
+<!-- FEATURES -->
+<section class='mt-3' id="stories" style="margin-top: -50px;margin-bottom: 50px;">
+  <div class='stories'>
+    <div class="container">
+      <div class="col-md-12">
+        <div class="full">
+            <div class="heading_main text_align_center" style="margin-top: -30px;margin-bottom: -30px;">
+                  <h2>FEATURES</h2>
+            </div>
+</div>
+    </div>
+      <!--  -->
+      <div class="row">
+        <div class="col-md-4">
+          <div class="story-box overlay shadow">
+            <div class="story-icon">
+              <i class="fa fa-video" aria-hidden="true"></i>
+            </div>
+            <h2>Video Chat</h2>
+            <p>The video chat feature enable the teacher to communicate effectively to the students. It allows the students to interact with the teacher by video and audio call.</p>
+            
+          </div>
+        </div>
+        <!--  -->
+        <div class="col-md-4">
+          <div class="story-box overlay shadow">
+            <div class="story-icon">
+              <i class="fa fa-book" aria-hidden="true"></i>
+            </div>
+            <h2>Assignments</h2>
+            <p>Teacher can assign assignments to a Classroom and all the student of that Classroom will receive the assignment which they can keep a track of and upload. </p>
+          </div>
+        </div>
+        <!--  -->
+        <div class="col-md-4">
+          <div class="story-box overlay shadow" >
+            <div class="story-icon">
+              <i class="fa fa-users" aria-hidden="true"></i>
+            </div>
+            <h2>Individual Teams</h2>
+            <p>Teachers can create room or team for a group of students. Assignment posted is visible to students of the team and uploaded assignments would be visible to the teacher.</p>
+          </div>
+        </div>
+        <!--  -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- features -->
+  <!-- footer1 caro -->
+      
+  <section style="background-color: #273444;">
+    <ul class="nav text-center justify-content-center">
+      <li class="nav-item ">
+        <a href="#aboutus" class="nav-link text-white">
+          About us
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a href="#courses" class="nav-link text-white">
+          Popular course subjects
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a href="#stories" class="nav-link text-white">
+          Features
+        </a>
+      </li>
+      <li class="nav-item ">
+        <a href="#hero" class="nav-link text-white">
+          Login
+        </a>
+      </li>
+    </ul>
+
+  </section>
+     
+     
+   </div>
+
+    </div>
+</footer>
+  <!-- footer1 ends -->
+
+ 
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+  <script >
+    $(document).ready(function(){
+    $(".toggle-password").click(function() {
+
+    $(this).toggleClass("fa-eye fa-eye-slash");
+    var input = $($(this).attr("toggle"));
+    if (input.attr("type") == "password") {
+        input.attr("type", "text");
+    } else {
+        input.attr("type", "password");
+    }
+    });
+    $(".toggle-password1").click(function() {
+
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+});
+
+  </script>
+</body>
+</html>
