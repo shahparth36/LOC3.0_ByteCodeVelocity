@@ -2240,6 +2240,9 @@ ul.social_icon li {
 .footer_bottom {
   background: #1e2e3d;
   padding: 15px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 .footer_bottom p.crp {

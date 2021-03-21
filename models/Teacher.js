@@ -13,6 +13,10 @@ const TeacherSchema = new mongoose.Schema({
     createdClassrooms: [{
         type      : mongoose.Schema.Types.ObjectId,
         ref       : "Classroom"
+    }],
+    createdAssignments: [{
+        type      : mongoose.Schema.Types.ObjectId,
+        ref       : "Assignment"
     }]
 });
 

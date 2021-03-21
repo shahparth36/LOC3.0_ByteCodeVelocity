@@ -10,7 +10,13 @@ const AssignmentSchema = new mongoose.Schema({
     classroomID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Classroom'
-    }
+    },
+    answers: [{
+        type: Object
+    }],
+    marksScored: Number,
+    hasSubmitted: Boolean,
+    isGraded:Boolean
 });
 
 module.exports = mongoose.model('Assignment', AssignmentSchema);

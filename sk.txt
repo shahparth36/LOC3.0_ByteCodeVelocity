@@ -1,0 +1,823 @@
+<%- include("./partials/header") %>
+<title><%= currentUser.username %> | Settings | Setitup </title>
+
+    <link rel="stylesheet" href="/stylesheets/settings.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-md-5 col-lg-4 col-xl-3">
+                    <div id="myCard" class="card text-center">
+                        <img id="myImg" src="<%= user.image %>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 id="card-title" class="card-title">
+                                <%= user.name %>
+                            </h5>
+                            <p id="card-text" class="card-text">Member since
+                                <%= moment(user.createdAt).format("MMM Do YY") %>
+                            </p>
+                            <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" id="editPictureButton">
+                            EDIT PROFILE PICTURE
+                        </button>
+                            <form action="/settings/<%= user._id%>/image?_method=PUT" method="POST" enctype="multipart/form-data">
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit Profile Picture</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input type="file" id="image" name="image" accept="image/*" required>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-outline-primary" id="updatePictureButton">Update
+                                                Profile Picture</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <a id="activeProfile" class="list-group-item">Profile</a>
+                            <a id="activeSettings" class="list-group-item active">Settings</a>
+                            <a id="Logout" class="list-group-item" href="/logout/<%= currentUser._id %>">Logout</a>
+                        </ul>
+                    </div>
+                </div>
+                <div id="settingsDiv" class="col-md-7 col-lg-8 col-xl-9 ">
+                    <div class="row d-flex justify-content-center justify-content-lg-start" id="firstRow">
+                        <form action="/settings/<%= user._id %>" method="POST">
+                            <div class="form-row">
+                                <div class="form-group col-lg-6">
+                                    <label>Username</label>
+                                    <input id="username" type="text" class="form-control" value="<%= user.username %>" name="username" readonly>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label for="inputEmail2">Email</label>
+                                    <input id="email" type="email" class="form-control myClass" id="inputEmail2" value="<%= user.email %>" name="email" readonly>
+                                    <small>An Email will be sent on this Email Address incase you forget your
+                                    password.</small>
+                                </div>
+                            </div>
+                            <a id="editButton" class="btn btn-outline-primary">EDIT
+                            CHANGES</a>
+                            <span id="submitButton">
+                            <button type="submit" class="btn btn-outline-primary" id="saveChangesButton">SAVE
+                                CHANGES</button>
+                        </span>
+                        </form>
+                    </div>
+                    <hr>
+                    <div class="row d-flex justify-content-center justify-content-lg-start" id="secondRow">
+    
+                            <div class="col-12 col-md-9 col-lg-7 mx-auto mx-md-0">
+                                <form action="/settings/<%= user._id%>/reset" method="POST">
+                                    <h5 id="changePasswordText">Change Password</h5>
+                                    <!-- <div class="form-label-group">
+                                        <input minlength="8" id="password" type="password" id="inputPassword1" name="password" class="form-control" placeholder="New Password" required size="50">
+                                        <label for="inputPassword1">New Password</label>
+                                    </div>
+        
+                                    <div class="form-label-group">
+                                        <input minlength="8" id="retypedpassword" type="password" id="inputPassword" name="confirm" class="form-control" placeholder="Retye Password" required size="50">
+                                        <label for="inputPassword">Retype Password</label>
+                                    </div> -->
+                                    
+                                    <div class="form-group row">
+                                            <div class="input-group">
+                                                <input minlength="8" required id = "password" type="password" name="password" class="form-control ml-3 pwd" placeholder="Password">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default reveal-pwd" type="button"><i class="fas fa-eye"></i></button>
+                                            </span>
+                                        </div>
+            
+                                    </div>
+                                    <div class="form-group row">
+                                            <div class="input-group">
+                                                 <input minlength="8" required id = "retypedpassword" type="password" name="confirm" class="form-control ml-3 repwd"placeholder="Retype Password" onChange="checkPasswordMatch();" >
+                                                 <span class="input-group-btn">
+                                                    <button class="btn btn-default reveal-repwd" type="button"><i class="fas fa-eye"></i></button>
+                                                </span>
+                                            </div>
+                                            <div class="pt-3">
+                                                <div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
+                                            </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <div class="registrationFormAlert" id="divCheckPasswordMatch">
+                                        </div>
+                                    </div>
+                                    <button id="register" class="btn btn-outline-primary" disabled>
+                                    RESET PASSWORD
+                                </button>
+                                </form>
+                            </div>
+                    </div>
+                    <hr>
+                    <div id="lastRow" class="row">
+                        <strong id="strong">Delete Account</strong>
+                        <span id="span">
+                        <!-- Modal Button -->
+                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#myModal"
+                            id="deleteButton">
+                            DELETE ACCOUNT
+                        </button>
+                    </span>
+                        <form action="/settings/<%= user._id%>/delete?_method=DELETE" method="POST">
+                            <!-- Modal -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModallLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="myModalLabel">Warning</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            This action can't be undone. Are you sure you want to do this?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-outline-danger" id="finalDeleteButton">DELETE</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Edit Profile Content -->
+                <div id="editDiv" class="col-md-7 col-lg-8 col-xl-9 ">
+                    <div class="row d-flex justify-content-center justify-content-lg-start" id="firstRow">
+                        <div class="profile-pg mx-2 card my-5 border-dark col-12 ">
+
+                            <div class=" profile-pg jumbotron mb-0">
+                                <div class="h1 text-lg text-center text-info m-0 p-0">
+                                    Your Profile! &nbsp;<i class="fas fa-venus-mars"></i>
+                                </div>
+                            </div>
+
+                            <h3 class="card-title text-center mb-4 py-3 font-weight-bold">Edit your Profile.</h3>
+
+                            <div class="card-body col-md-10 mx-auto text-dark">
+                                <form action="/profile/<%= user._id %>/view" method="POST">
+                                    <div class="form-row">
+                                        <div class=" col-12 col-sm-6">
+                                            <label class="col-form-label-lg">First Name<span class="input-req-ind">*</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="addon-wrapping"><i
+                                                        class="fas fa-id-card"></i></span>
+                                                </div>
+                                                <input required type="text" class="form-control" name="user[firstName]" placeholder="First Name" value="<%= user.firstName %>" aria-label="First Name" aria-describedby="addon-wrapping">
+                                                <div class="invalid-feedback">
+                                                    Please enter a valid Name.
+                                                </div>
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-12 col-sm-6">
+                                            <label class="col-form-label-lg">Last Name<span class="input-req-ind">*</span></label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="addon-wrapping"><i
+                                                        class="fas fa-id-card"></i></span>
+                                                </div>
+                                                <input required type="text" class="form-control" name="user[lastName]" value="<%= user.lastName %>" placeholder="Last Name" aria-label="Last Name" aria-describedby="addon-wrapping">
+                                                <div class="invalid-feedback">
+                                                    Please enter a valid Name.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-12 col-sm-6">
+                                            <label class="col-form-label-lg">City<span class="input-req-ind">*</span></label>
+                                            <div class="input-group ">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="addon-wrapping"><i
+                                                        class="fas fa-map-marker-alt"></i></span>
+                                                </div>
+                                                <select required name="user[city]" class="form-control" aria-label="City" aria-describedby="addon-wrapping">
+                                                <option disabled value="">Select City</option>
+                                                <% for(var i =0; i<cities.length; i++) { %>
+                                                <% if (cities[i] === user.city) { %>
+                                                <option selected><%= cities[i] %></option>
+                                                <% } else { %>
+                                                <option><%= cities[i] %></option>
+                                                <% } %>
+                                                <% } %>
+                                            </select>
+                                                <!-- <input required type="text" class="form-control" name="user[city]" aria-label="City" aria-describedby="addon-wrapping"> -->
+                                                <div class="invalid-feedback">
+                                                    Please enter a valid City.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class=" col-12 col-sm-6">
+                                            <label class="col-form-label-lg">Gender<span class="input-req-ind">*</span></label>
+                                            <select required name="user[gender]" class="form-control custom-select ">
+                                            <option disabled value="">--Not Specified--</option>
+                                            <% if ( user.gender === "Male") { %>
+                                            <option selected>Male</option>
+                                            <option>Female</option>
+                                            <option>Others</option>
+                                            <% } else if(user.gender === "Female") { %>
+                                            <option>Male</option>
+                                            <option selected>Female</option>
+                                            <option>Others</option>
+                                            <% } else { %>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                            <option selected>Others</option>
+                                            <% } %>
+                                        </select>
+                                            <div class="invalid-feedback">
+                                                Please select a valid Option.
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-row d-flex justify-content-around">
+                                        <div class="form-group col-12 col-sm-6">
+                                            <label class="col-form-label-lg">Date Of Birth<span class="input-req-ind">*</span></label>
+                                            <div class="input-group ">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="addon-wrapping"><i
+                                                        class="fas fa-birthday-cake"></i></span>
+                                                </div>
+                                                <input required type="date" value="<%= user.date %>" class="form-control" name="user[date]" aria-label="Date Of Birth" aria-describedby="addon-wrapping">
+                                                <div class="invalid-feedback">
+                                                    Please enter a Date of Birth.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-12 col-sm-4 ">
+                                            <label class="col-form-label-lg">Nickname</label>
+                                            <div class="input-group flex-nowrap">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="addon-wrapping"><i
+                                                        class="fas fa-user-tag"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" name="user[nickname]" value="<%= user.nickname %>" aria-label="Nickname" aria-describedby="addon-wrapping">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin: 15px 0px;" class="hr-theme-slash-2">
+                                        <div class="hr-line"></div>
+                                        <div class="hr-icon"><i class="fas fa-venus-mars"></i></div>
+                                        <div class="hr-line"></div>
+                                    </div>
+
+
+                                    <h3 class="card-title text-center mb-4 py-3 font-weight-bold">Describe Yourself so People know more About You.</h3>
+
+                                    <div style="width: 85%;" class=" mx-auto form-row mb-5 mt-1">
+                                        <label class=" pt-3 mr-4 col-form-label-lg pl-0">Write a short description about yourself...<span class="input-req-ind">*</span></label>
+                                        <textarea required name="user[bio]" class="form-control" rows="10" maxlength="750"><%= user.bio %></textarea>
+                                    </div>
+
+                                    <div class="form-row d-flex justify-content-around">
+                                        <div class="form-group col-12 col-sm-5">
+                                            <label class="col-form-label-lg">Marital Status<span class="input-req-ind">*</span></label>
+                                            <select required name="user[maritalStatus]" class="form-control custom-select">
+                                            <option disabled value="">--Not Specified--</option>
+                                            <% if(user.maritalStatus === "Single") { %>
+                                            <option selected>Single</option>
+                                            <option>Divorced</option>
+                                            <option>Widowed</option>
+                                            <% } else if (user.maritalStatus === "Divorced") { %>
+                                            <option>Single</option>
+                                            <option selected>Divorced</option>
+                                            <option>Widowed</option>
+                                            <% } else { %>
+                                            <option>Single</option>
+                                            <option>Divorced</option>
+                                            <option selected>Widowed</option>
+                                            <% } %>
+                                        </select>
+                                            <div class="invalid-feedback">
+                                                Please choose a vali<span class="input-req-ind">*</span>d option.
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-12 col-sm-5">
+                                            <label class="col-form-label-lg">Looking for ?<span class="input-req-ind">*</span></label>
+                                            <select required name="user[relType]" class="form-control custom-select">
+                                            <option disabled value="">--Not Specified--</option>
+                                            <% if (user.relType === "Anything will do" ) { %>
+                                            <option selected>Anything will do</option>
+                                            <option>Short Term</option>
+                                            <option>Long Term</option>
+                                            <option>Hookups</option>
+                                            <option>One Night Stands</option>
+                                            <option>Casual Flings</option>
+                                            <% } else if (user.relType === "Short Term") { %>
+                                            <option>Anything will do</option>
+                                            <option selected>Short Term</option>
+                                            <option>Long Term</option>
+                                            <option>Hookups</option>
+                                            <option>One Night Stands</option>
+                                            <option>Casual Flings</option>
+                                            <% } else if (user.relType === "Long Term") { %>
+                                            <option>Anything will do</option>
+                                            <option>Short Term</option>
+                                            <option selected>Long Term</option>
+                                            <option>Hookups</option>
+                                            <option>One Night Stands</option>
+                                            <option>Casual Flings</option>
+                                            <% } else if (user.relType === "Hookups") { %>
+                                            <option>Anything will do</option>
+                                            <option>Short Term</option>
+                                            <option>Long Term</option>
+                                            <option selected>Hookups</option>
+                                            <option>One Night Stands</option>
+                                            <option>Casual Flings</option>
+                                            <% } else if (user.relType === "One Night Stands") { %>
+                                            <option>Anything will do</option>
+                                            <option>Short Term</option>
+                                            <option>Long Term</option>
+                                            <option>Hookups</option>
+                                            <option selected>One Night Stands</option>
+                                            <option>Casual Flings</option>
+                                            <% } else  { %>
+                                            <option>Anything will do</option>
+                                            <option>Short Term</option>
+                                            <option>Long Term</option>
+                                            <option>Hookups</option>
+                                            <option>One Night Stands</option>
+                                            <option selected>Casual Flings</option>
+                                            <% } %>
+                                        </select>
+                                            <div class="invalid-feedback">
+                                                Please choose a valid option.
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-row d-flex justify-content-around">
+
+                                        <div class="form-group col-12 col-sm-3 col-md-4">
+                                            <label class="col-form-label-lg">You are..<span class="input-req-ind">*</span>.</label>
+                                            <select required name="user[relPreference]" class="form-control custom-select">
+                                            <option disabled value="">--Not Specified--</option>
+                                            <% if(user.relPreference === "Straight") { %>
+                                            <option selected>Straight</option>
+                                            <option>Homosexual</option>
+                                            <option>Bisexual</option>
+                                            <% } else if (user.relPreference === "Homosexual") { %>
+                                            <option>Straight</option>
+                                            <option selected>Homosexual</option>
+                                            <option>Bisexual</option>
+                                            <% } else { %>
+                                            <option>Straight</option>
+                                            <option>Homosexual</option>
+                                            <option selected>Bisexual</option>
+                                            <% } %>
+                                        </select>
+                                            <div class="invalid-feedback">
+                                                Please choose a valid option.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-12 col-sm-3 col-md-4 pr-2">
+                                            <label class="col-form-label-lg">Your Preference?<span class="input-req-ind">*</span></label>
+                                            <select required name="user[relDistance]" class="form-control custom-select">
+                                            <option disabled value="">Choose..</option>
+                                            <% if(user.relDistance === "Anything Will Do") { %>
+                                            <option selected>Anything Will Do</option>
+                                            <option>Short Distance Relationships</option>
+                                            <option>Long Distance Relationship</option>
+                                            <% } else if (user.relDistance === "Short Distance Relationships") { %>
+                                            <option>Anything Will Do</option>
+                                            <option selected>Short Distance Relationships</option>
+                                            <option>Long Distance Relationship</option>
+                                            <% } else { %>
+                                            <option>Anything Will Do</option>
+                                            <option>Short Distance Relationships</option>
+                                            <option selected>Long Distance Relationship</option>
+                                            <% } %>
+                                        </select>
+                                            <div class="invalid-feedback">
+                                                Please choose a valid option.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-12 col-sm-3 col-md-4 pr-2">
+                                            <label class="col-form-label-lg">Live-in?<span class="input-req-ind">*</span></label>
+                                            <select required name="user[liveIn]" class="form-control custom-select">
+                                            <option>--Not Specified--</option>
+                                            <% if(user.liveIn === "Yes") { %>
+                                            <option selected>Yes</option>
+                                            <option>No</option>
+                                            <% } else { %>
+                                            <option>Yes</option>
+                                            <option selected>No</option>
+                                            <% }  %>
+                                        </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row d-flex justify-content-center">
+                                        <div class="form-group col-12 col-md-10 pr-2">
+                                            <label class="col-form-label-lg">You are currently...<span class="input-req-ind">*</span></label>
+                                            <select required name="user[currently]" class="form-control custom-select">
+                                            <option disabled value="">--Not Specified--</option>
+                                            <% if(user.currently === "Studying in School") { %>
+                                            <option selected>Studying in School</option>
+                                            <option>Studying in Junior College</option>
+                                            <option>Studying in Degree College</option>
+                                            <option>Working Professional</option>
+                                            <option>Working as a Medical Practioner</option>
+                                            <option>Running your StartUp/Business</option>
+                                            <option>Not Working</option>
+                                            <% } else if (user.currently === "Studying in Junior College") { %>
+                                            <option>Studying in School</option>
+                                            <option selected>Studying in Junior College</option>
+                                            <option>Studying in Degree College</option>
+                                            <option>Working Professional</option>
+                                            <option>Working as a Medical Practioner</option>
+                                            <option>Running your StartUp/Business</option>
+                                            <option>Not Working</option>
+                                            <% } else if (user.currently === "Studying in Degree College"){ %>
+                                            <option>Studying in School</option>
+                                            <option>Studying in Junior College</option>
+                                            <option selected>Studying in Degree College</option>
+                                            <option>Working Professional</option>
+                                            <option>Working as a Medical Practioner</option>
+                                            <option>Running your StartUp/Business</option>
+                                            <option>Not Working</option>
+                                            <% } else if (user.currently === "Working Professional") { %>
+                                            <option>Studying in School</option>
+                                            <option>Studying in Junior College</option>
+                                            <option>Studying in Degree College</option>
+                                            <option selected>Working Professional</option>
+                                            <option>Working as a Medical Practioner</option>
+                                            <option>Running your StartUp/Business</option>
+                                            <option>Not Working</option>
+                                            <% } else if (user.currently === "Working as a Medical Practioner") { %>
+                                            <option>Studying in School</option>
+                                            <option>Studying in Junior College</option>
+                                            <option>Studying in Degree College</option>
+                                            <option>Working Professional</option>
+                                            <option selected>Working as a Medical Practioner</option>
+                                            <option>Running your StartUp/Business</option>
+                                            <option>Not Working</option>
+                                            <% } else if (user.currently === "Running your StartUp/Business") { %>
+                                            <option>Studying in School</option>
+                                            <option>Studying in Junior College</option>
+                                            <option>Studying in Degree College</option>
+                                            <option>Working Professional</option>
+                                            <option>Working as a Medical Practioner</option>
+                                            <option selected>Running your StartUp/Business</option>
+                                            <option>Not Working</option>
+                                            <% } else { %>
+                                            <option>Studying in School</option>
+                                            <option>Studying in Junior College</option>
+                                            <option>Studying in Degree College</option>
+                                            <option>Working Professional</option>
+                                            <option>Working as a Medical Practioner</option>
+                                            <option>Running your StartUp/Business</option>
+                                            <option selected>Not Working</option>
+                                            <% } %>
+                                        </select>
+                                        </div>
+                                    </div>
+
+                                    <fieldset>
+                                        <div class="row">
+                                            <legend class="col-form-label-lg col-3 col-md-2 pt-0 pr-0">Virgin?<span class="input-req-ind">*</span></legend>
+                                            <div class="col-md-4">
+                                                <% if(user.virgin ==="Yes") { %>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="user[virgin]" id="gridRadios1" value="Yes" checked required>
+                                                        <label class="form-check-label" for="gridRadios1">
+                                                    Yes
+                                                </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="user[virgin]" id="gridRadios2" value="No" required>
+                                                        <label class="form-check-label" for="gridRadios2">
+                                                    No
+                                                </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="user[virgin]" id="gridRadios3" value="Not Specified" required>
+                                                        <label class="form-check-label" for="gridRadios3">
+                                                    Rather Not Specify
+                                                </label>
+                                                    </div>
+                                                    <% } else if (user.virgin ==="No") { %>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="user[virgin]" id="gridRadios1" value="Yes" required>
+                                                            <label class="form-check-label" for="gridRadios1">
+                                                    Yes
+                                                </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="user[virgin]" id="gridRadios2" value="No" checked required>
+                                                            <label class="form-check-label" for="gridRadios2">
+                                                    No
+                                                </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="user[virgin]" id="gridRadios3" value="Not Specified" required>
+                                                            <label class="form-check-label" for="gridRadios3">
+                                                    Rather Not Specify
+                                                </label>
+                                                        </div>
+                                                        <% } else { %>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="user[virgin]" id="gridRadios1" value="Yes" required>
+                                                                <label class="form-check-label" for="gridRadios1">
+                                                    Yes
+                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="user[virgin]" id="gridRadios2" value="No" required>
+                                                                <label class="form-check-label" for="gridRadios2">
+                                                    No
+                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio" name="user[virgin]" id="gridRadios3" value="Not Specified" checked required>
+                                                                <label class="form-check-label" for="gridRadios3">
+                                                    Rather Not Specify
+                                                </label>
+                                                            </div>
+                                                            <% } %>
+                                            </div>
+                                            <div class="row col-md-6 mx-auto">
+                                                <div class="col-12 mt-4 mt-md-0">
+                                                    <label class=" d-flex col-form-label py-0 ">Do you Cook?<span class="input-req-ind">*</span></label>
+                                                    <% if(user.cook ==="Yes") { %>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="user[cook]" value="Yes" checked required>
+                                                            <label class="form-check-label">Yes</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="user[cook]" value="No" required>
+                                                            <label class="form-check-label">No</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="user[cook]" value="Ocassionaly" required>
+                                                            <label class="form-check-label">Ocassionaly</label>
+                                                        </div>
+                                                        <% } else if (user.cook ==="No") { %>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="user[cook]" value="Yes" required>
+                                                                <label class="form-check-label">Yes</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="user[cook]" value="No" checked required>
+                                                                <label class="form-check-label">No</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="user[cook]" value="Ocassionaly" required>
+                                                                <label class="form-check-label">Ocassionaly</label>
+                                                            </div>
+                                                            <% } else if (user.cook ==="Ocassionaly") { %>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="user[cook]" value="Yes" required>
+                                                                    <label class="form-check-label">Yes</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="user[cook]" value="No" required>
+                                                                    <label class="form-check-label">No</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="user[cook]" value="Ocassionaly" checked required>
+                                                                    <label class="form-check-label">Ocassionaly</label>
+                                                                </div>
+                                                                <% } else { %>
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input class="form-check-input" type="radio" name="user[cook]" value="Yes" required>
+                                                                        <label class="form-check-label">Yes</label>
+                                                                    </div>
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input class="form-check-input" type="radio" name="user[cook]" value="No" required>
+                                                                        <label class="form-check-label">No</label>
+                                                                    </div>
+                                                                    <div class="form-check form-check-inline">
+                                                                        <input class="form-check-input" type="radio" name="user[cook]" value="Ocassionaly" checked required>
+                                                                        <label class="form-check-label">Ocassionaly</label>
+                                                                    </div>
+                                                                    <% } %>
+                                                </div>
+                                                <div class="col-12 mt-4 mt-md-3">
+                                                    <label class=" d-flex col-form-label py-0">Source of income?<span class="input-req-ind">*</span></label>
+                                                    <% if(user.income ==="Yes") { %>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="user[income]" value="Yes" checked required>
+                                                            <label class="form-check-label">Yes</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="user[income]" value="No" required>
+                                                            <label class="form-check-label">No</label>
+                                                        </div>
+                                                        <% } else if (user.income ==="No") { %>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="user[income]" value="Yes" required>
+                                                                <label class="form-check-label">Yes</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline">
+                                                                <input class="form-check-input" type="radio" name="user[income]" value="No" checked required>
+                                                                <label class="form-check-label">No</label>
+                                                            </div>
+                                                            <% } else { %>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="user[income]" value="Yes" required>
+                                                                    <label class="form-check-label">Yes</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input class="form-check-input" type="radio" name="user[income]" value="No" required>
+                                                                    <label class="form-check-label">No</label>
+                                                                </div>
+                                                                <% } %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                    <div class="form-row d-flex justify-content-around">
+                                        <div class="form-group col-12 col-sm-5">
+                                            <label class="col-form-label-lg">Languages</label>
+                                            <div class="input-group flex-nowrap">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="addon-wrapping"><i
+                                                        class="fas fa-language"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" name="user[languages]" value="<%= user.languages %>" aria-label="Languages" aria-describedby="addon-wrapping">
+                                            </div>
+                                        </div>
+                                        <div class="form-group col-12 col-sm-6 ">
+                                            <label class="col-form-label-lg">Preferred Age Group ?<span class="input-req-ind">*</span></label>
+                                            <div class="row">
+                                                <div class="col-12 col-sm-6 form-group">
+                                                    <div class="input-group flex-nowrap">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="addon-wrapping">From:</span>
+                                                            <select name="user[relInitialAge]" required id="relInitialAge" class="relInitialAge">
+                                                            <% for ( var i =15; i<75; i++) { %>
+                                                            <%  if(user.relInitialAge == i){ %>
+                                                            <option selected><%= i %></option>
+                                                            <% } else { %>
+                                                            <option><%= i %></option>
+                                                            <% } %>
+                                                            <% } %>
+                                                        </select>
+                                                        </div>
+                                                        <!-- <input required type="text" class="form-control" name="user[ageGroup]" aria-label="Age Group" aria-describedby="addon-wrapping"> -->
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6 form-group">
+                                                    <div class="input-group flex-nowrap">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text" id="addon-wrapping">To:</span>
+                                                            <select name="user[relFinalAge]" id="relFinalAge" class="relFinalAge" required>
+                                                            <% for ( var j =15; j<75; j++) { %>
+                                                            <%  if(user.relFinalAge == j){ %>
+                                                            <option selected><%= j %></option>
+                                                            <% } else { %>
+                                                            <option><%= j %></option>
+                                                            <% } %>
+                                                            <% } %>
+                                                        </select>
+                                                        </div>
+                                                        <!-- <input required type="text" class="form-control" name="user[ageGroup]" aria-label="Age Group" aria-describedby="addon-wrapping"> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="margin: 15px 0px;" class="hr-theme-slash-2">
+                                        <div class="hr-line"></div>
+                                        <div class="hr-icon"><i class="fas fa-venus-mars"></i></div>
+                                        <div class="hr-line"></div>
+                                    </div>
+
+                                    <h3 class="card-title text-center mb-4 py-3 font-weight-bold">Link your other Social Media Acoounts.
+                                    </h3>
+
+                                    <div class="form-group row">
+                                        <span class="i-profile col-1"><i class="fab fa-instagram"></i></span>
+                                        <div class="col-9 mx-auto">
+                                            <input type="text" name="user[igLink]" value="<%= user.igLink %>" class="form-control" placeholder="Link to your Instagram Profile (optional)">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <span class="col-1 i-profile "><i class="fab fa-facebook"></i></span>
+                                        <div class="col-9 mx-auto ">
+                                            <input type="text" name="user[fbLink]" value="<%= user.fbLink %>" class="form-control" placeholder="Link to your Facebook Profile (optional)">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <span class="col-1 i-profile "><i class="fab fa-twitter"></i></span>
+                                        <div class="col-9 mx-auto ">
+                                            <input type="text" name="user[twitterLink]" value="<%= user.twitterLink %>" class="form-control" placeholder="Link to your Twitter Profile (optional)">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-5 mb-4">
+                                        <div class="col-12 col-sm-10 mx-auto">
+                                            <h4 class="font-italic text-center">Note: Input Fields with "<span class="input-req-ind">*</span>" are Required Inputs.</h4>
+                                        </div>
+                                    </div>
+                
+
+                                    <div class="col-sm-9 col-md-7 col-lg-6 mx-auto ml-5 my-4 pt-4 d-flex justify-content-between ">
+                                        <button id="updateButton" type="submit" class="btn btn-outline-info"> Update your <span
+                                            class="brand-logo">Setitup</span>
+                                        Profile! &nbsp; <i id = "updateSymbol" class="fas fa-pen-nib"></i> </button>
+                                    </div>
+                                </form>
+                                <div style="margin: 15px 0px;" class="hr-theme-slash-2">
+                                    <div class="hr-line"></div>
+                                    <div class="hr-icon"><i class="fas fa-venus-mars"></i></div>
+                                    <div class="hr-line"></div>
+                                </div>
+
+                                <h3 id="photos" class="card-title text-center mb-4 py-3 font-weight-bold">Edit your profile photos.</h3>
+
+                                <div class="row d-flex justify-content-center ">
+                                    <% user.images.forEach(function (img) { %>
+                                        <div class="col-6 mb-5">
+                                            <div class="card h-100 shadow-lg bg-white rounded ">
+                                                <img class="img-fluid rounded-lg" style="width:100%; height:100%; object-fit: cover;" src="<%= img.url %>">
+                                            </div>
+                                        </div>
+                                        <% }); %>
+                                </div>
+
+                                <div id="lastRow" class="row d-flex justify-content-center">
+                                    <span id="span">
+                                    <!-- Modal Button -->
+                                    <button type="button" class="btn btn-outline-info" data-toggle="modal"
+                                        data-target="#myModal1" id="deleteButton">
+                                        Update Profile Pictures<i id = "profileUpdateButton" class="fas fa-camera-retro"></i>
+                                    </button>
+                                </span>
+                                    <form id="imagesEditForm" action="/profile/<%= user._id%>/update?_method=PUT" method="POST" enctype="multipart/form-data">
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModal1lLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header ">
+                                                        <h5 class="modal-title " id="myModal1Label">Edit Profile Pictures
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <input class="mt-3 mb-5" type="file" id="imageUpload" accept="image/*" name="images" multiple />
+                                                        <div class="row d-flex justify-content-center">
+                                                            <% user.images.forEach(function(image,i) { %>
+                                                                <div class="col-6">
+                                                                    <img src="<%= image.url %>" alt="..." width="200px;">
+                                                                    <div class="my-3">
+                                                                        <span class="d-flex justify-content-center">
+                                                                    <label class="m-0 h5"
+                                                                        for="image<%= i %>">Delete?</label>
+                                                                    <input class="mt-1 m-2" type="checkbox"
+                                                                        name="deleteImages[]"
+                                                                        class="imageDeleteCheckbox" id="<%= i %>"
+                                                                        value="<%= image.public_id %>">
+                                                                </span>
+                                                                    </div>
+                                                                </div>
+                                                                <% }) %>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button id="updateButton" class="btn btn-outline-info rounded-0">Update Profile
+                                                        Pictures<i id="cameraSymbol" class="fas fa-camera-retro ml-2"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/scripts/settings.js"></script>
+        <%- include("./partials/footer") %>

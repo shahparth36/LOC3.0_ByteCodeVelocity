@@ -3,11 +3,11 @@ const express = require('express');
 const app = express();
 const passport = require('passport');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); 
 const bcrypt = require('bcrypt');
 const LocalStrategy = require('passport-local').Strategy;
 
-
+ 
 const server = require("http").Server(app)
 const io = require('socket.io')(server);
 const { ExpressPeerServer } = require('peer')
@@ -16,13 +16,13 @@ const peerServer = ExpressPeerServer(server, {
 })
 
 const Student = require('./models/Student');
-const Teacher = require('./models/Teacher');
+const Teacher = require('./models/Teacher'); 
 
 const authRoutes = require('./routes/auth');
 const teacherRoutes = require('./routes/teacher');
 const studentRoutes = require('./routes/student');
 
-mongoose.connect('mongodb://localhost/loc', {
+mongoose.connect('mongodb://localhost/LOC1', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
@@ -87,13 +87,20 @@ passport.use(new LocalStrategy({
     });
 }));
 
+app.use(function(req, res, next) {
+	res.locals.currentUser = req.user;
+	next();
+});
 
 app.use(authRoutes);
 app.use(teacherRoutes);
 app.use(studentRoutes);
 
+app.get("/", (req,res)=>{
+    res.redirect("/login");
+})
+
 app.get('/:room', (req, res) => {
-    console.log('inside room');
     res.render('meet', { roomId: req.params.room })
 });
 
@@ -103,7 +110,7 @@ io.on("connection",(socket)=>{
       socket.to(roomId).emit('user-connected', userId)
       
       socket.on("message",(message)=>{
-        socket.to(roomId).emit("createMessage",{userId,message})
+        io.in(roomId).emit("createMessage",{userId,message})
       })
       socket.on('disconnect', () => {
         socket.to(roomId).emit('user-disconnected', userId)

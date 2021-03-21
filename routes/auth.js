@@ -11,9 +11,9 @@ router.get('/login', async (req, res) => {
 });
 
 router.post('/login', passport.authenticate('local', {failureRedirect: '/login'}), async (req, res) => {
-    if (req.user.isStudent) 
-        return res.redirect('/student-home');
-    return res.redirect('/teacher-home');
+    if (req.user.isStudent)
+        return res.redirect(`/student-home/${req.user._id}`);
+    return res.redirect(`/teacher-home/${req.user._id}`);
 });
 
 router.get('/student-registration', async (req, res) => {
@@ -65,5 +65,10 @@ router.post('/teacher-registration', async (req, res) => {
     await Teacher.create(newTeacher);
     return res.redirect('/login');
 });
+
+router.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("/login");
+ });
 
 module.exports = router;

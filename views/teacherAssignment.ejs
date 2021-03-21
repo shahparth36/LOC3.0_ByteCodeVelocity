@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/teacherAssignment.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+   crossorigin="anonymous">
+   <script src="https://kit.fontawesome.com/7414e22221.js" crossorigin="anonymous"></script>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" /> -->
+  <title>Teacher Home Page</title>
+  <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,500&amp;subset=latin-ext" rel="stylesheet"> -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
+</head>
+
+<style>
+  html {
+    font-size: 14px;
+  }
+  
+  .container {
+    font-size: 14px;
+    color: #666666;
+    font-family: "Open Sans";
+  }
+</style>
+
+<body>
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3c5344ee; z-index: 1;padding: 8px 16px;">
+    <a class="navbar-brand" href="/">
+      <svg width="24px" height="24px" style="margin-right:15px;font-size:20px;"xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bezier" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M0 10.5A1.5 1.5 0 0 1 1.5 9h1A1.5 1.5 0 0 1 4 10.5v1A1.5 1.5 0 0 1 2.5 13h-1A1.5 1.5 0 0 1 0 11.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm10.5.5A1.5 1.5 0 0 1 13.5 9h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM6 4.5A1.5 1.5 0 0 1 7.5 3h1A1.5 1.5 0 0 1 10 4.5v1A1.5 1.5 0 0 1 8.5 7h-1A1.5 1.5 0 0 1 6 5.5v-1zM7.5 4a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"/>
+        <path d="M6 4.5H1.866a1 1 0 1 0 0 1h2.668A6.517 6.517 0 0 0 1.814 9H2.5c.123 0 .244.015.358.043a5.517 5.517 0 0 1 3.185-3.185A1.503 1.503 0 0 1 6 5.5v-1zm3.957 1.358A1.5 1.5 0 0 0 10 5.5v-1h4.134a1 1 0 1 1 0 1h-2.668a6.517 6.517 0 0 1 2.72 3.5H13.5c-.123 0-.243.015-.358.043a5.517 5.517 0 0 0-3.185-3.185z"/>
+      </svg>
+      <span class="biggy" id="font">EDUFUN</span>
+    </a>
+
+    <!-- collapse button -->
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="navbar-toggler-icon"><span></span><span></span><span></span></div>
+    </button>
+    <!-- !collapse button -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- right end -->
+      <ul class="navbar-nav ml-auto">
+        <!-- <button type="button" class="btn buttoncreate">Create Assignment</button> -->
+        <a class="nav-link active mr-3"style="font-size: 18px;"  href="/teacher-home/<%= teacher_id %>"><i class="fas fa-users mr-2 pd-3"></i>My teams</a>
+        <a class="nav-link active mr-3"style="font-size: 18px;"  href="/logout"><i class="fas fa-sign-in-alt mr-2 pd-3"></i>Logout</a>
+        
+    </div>
+  </nav>
+
+  <div style="width: 70%; " class="jumbotron m-3 mx-auto rounded-lg shadow-lg" style="background-color: #ffffff; margin-bottom: 40px;">
+    <h2 class="display-4" style="text-align: center;">Your Teams</h2>
+    <hr style="width: 200px;margin: 0 auto;">
+  <p style="text-align: center; margin-top: 15px;">You can view all the teams you created here.</p>
+
+
+  <button style="margin-left: 410px; background-color: #548362; padding: 10px 10px;font-size: 16px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Create an Assignment
+  </button>
+
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Creating an Assignment</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form action="/create-assignment/<%= classroom._id %>/<%= teacher_id %>" method="POST" enctype="multipart/form-data">
+          <div class="modal-body">
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Assignment Name</label>
+                <input type="text" name="title" class="form-control" id="recipient-name">
+                <input type="hidden" name="classroomID" value="<%= classroom._id %>">
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Instructions</label>
+                <textarea class="form-control" name="instructions" id="message-text"></textarea>
+              </div>
+            <div style="margin-left: 1px;" class="row row-space">
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Due date</label>
+                <input type="date" class="form-control" name="dueDate" id="message-text">
+              </div>
+              <div  style="margin-left: 15px;"class="mb-3">
+                <label for="message-text" class="col-form-label">Points</label>
+                <input type="number" class="form-control" min="0" name="points" id="message-text">
+              </div>
+            </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label">Upload Assignment</label>
+                <input type="file"  style="margin-bottom: 5px;" name="pdfLink" class="form-control" id="message-text">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard</button>
+              <button type="submit" class="btn btn-primary">Create Assignment</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-12 qclass">
+        <nav>
+            <div class="nav justify-content-center nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active acolor" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                    role="tab" aria-controls="nav-home" aria-selected="true">Assignments</a>
+                <a class="nav-item nav-link pcolor" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                    role="tab" aria-controls="nav-profile" aria-selected="false">Students</a>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="tab-content" id="nav-tabContent">       
+<div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <% if (classroom.assignments.length != 0) { %>
+      <% classroom.assignments.forEach((element) => { %>
+        <div style="margin: 15px 80px;"class="card">
+            <div class="card-body">
+                <div style="display: inline-block;">
+                <h4 class="card-title"><%= element.title %></h4>
+                </div>
+                <form action="/viewSubmissions/<%= classroom._id %>/<%= element._id %>/<%= teacher_id %>" method="GET">
+                  <div style="float: right;margin-top: -30px;">
+                    <button style="margin-left: 710px; background-color: #548362; padding: 6px 40px;font-size: 16px;" type="submit" class="btn btn-primary">
+                      View all Submissions
+                    </button>
+                  </div>
+                </form>
+                <br>
+                <div style="display: inline-block;">
+                <%= classroom.subject %>  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                  </svg>  Due Date: <%= element.dueDate.toLocaleString() %> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot" viewBox="0 0 16 16">
+                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+                  </svg><%= element.points %> points 
+            </div>
+            
+            </div>
+          </div> 
+        <% }) %>
+    <% } %>
+</div>
+
+
+<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+   
+    <table style="width: 75%; margin: 50px auto; "class="table table-striped">
+        <thead>
+          <tr>
+            <!-- <th scope="col">#</th> -->
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email Id</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.forEach((element) => { %>
+            <tr>
+            <!-- <th scope="row">1</th> -->
+            <td><%= element.firstName %></td>
+            <td><%= element.lastName %></td>
+            <td><%= element.email %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+</div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+crossorigin="anonymous"></script>
+
+<script
+src="https://code.jquery.com/jquery-3.6.0.js"
+integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+ 
+
+</body>
+
+</html>

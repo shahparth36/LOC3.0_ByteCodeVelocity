@@ -1,0 +1,143 @@
+.form-label-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.form-label-group > input,
+.form-label-group > label {
+  height: 3.5rem;
+  padding: 0.75rem;
+}
+
+.form-label-group > label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
+  /* Override default `<label>` margin */
+  line-height: 1.5;
+  color: #495057;
+  pointer-events: none;
+  cursor: text;
+  /* Match the input under the label */
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  transition: all 0.1s ease-in-out;
+}
+
+.form-label-group input::-webkit-input-placeholder {
+  color: transparent;
+}
+
+.form-label-group input:not(:placeholder-shown) {
+  padding-top: 1.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.form-label-group input:not(:placeholder-shown) ~ label {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-size: 12px;
+  color: #777;
+}
+
+.myClass {
+  margin-bottom: 10px;
+}
+
+#myCard {
+  margin-top: 60px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#myImg {
+  border-radius: 50%;
+  padding: 50px 50px;
+}
+
+#firstRow {
+  margin-top: 15px;
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+#saveChangesButton {
+  border-radius: 0%;
+  justify-content: start;
+}
+
+#submitButton {
+  display: none;
+}
+
+#secondRow {
+  margin: 30px 60px;
+}
+
+#lastRow {
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+#strong {
+  margin-right: 500px;
+}
+
+#span {
+  float: right;
+}
+
+#editDiv {
+  display: none;
+}
+
+#register {
+  border-radius: 0%;
+}
+
+a {
+  color: black;
+}
+
+#updateButton {
+  border-radius: 0%;
+}
+
+#updateSymbol {
+  font-size: 1.3rem;
+}
+
+#profileUpdateButton {
+  margin-left: 10px;
+  font-size: 1.3rem;
+}
+
+#settingsDiv {
+  margin-top: 60px;
+}
+.footer_bottom {
+  background: #3c5344ee;
+  padding: 15px 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer_bottom p.crp {
+  float: left;
+  margin: 0;
+  color: #fff;
+  font-size: 15px;
+  width: 100%;
+  text-align: center;
+}
+a#activeSettings.list-group-item.active {
+  background-color: #548362;
+}
+a#activeProfile.list-group-item.active {
+  background-color: #548362;
+}

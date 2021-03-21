@@ -45,6 +45,7 @@ navigator.mediaDevices
 		})
 
 		socket.on('createMessage', (message, userId) => {
+			console.log(message);
 			$('ul').append(`<li >
 								<span class="messageHeader">
 									<span>
@@ -59,8 +60,8 @@ navigator.mediaDevices
 										hour12: true,
 									})}
 								</span>
-								<span class="message">${message}</span>
-							
+								<span class="message">${message.message}</span>
+								
 							</li>`)
 			scrollToBottom()
 		})
