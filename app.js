@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose'); 
 const bcrypt = require('bcrypt');
 const LocalStrategy = require('passport-local').Strategy;
-const emailService = require('./helpers/email');
 
 const server = require("http").Server(app)
 const io = require('socket.io')(server);
@@ -22,7 +21,7 @@ const authRoutes = require('./routes/auth');
 const teacherRoutes = require('./routes/teacher');
 const studentRoutes = require('./routes/student');
 
-mongoose.connect("mongodb+srv://rushi:rushi@01@cluster0.0zckj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+mongoose.connect(process.env.DATABASEURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
@@ -100,13 +99,8 @@ app.get("/", (req,res)=>{
     res.redirect("/login");
 })
 
-app.get('/test', (req, res) => {
-    emailService.sendEmail('pdshah_b19@it.vjti.ac.in', 'subject is imp', 'passed in body');
-    return res.send('success!');
-});
-
 app.get('/:room', (req, res) => {
-    res.render('meet', { roomId: req.params.room })
+    res.render('meet', { roomId: req.params.room });
 });
 
 io.on("connection",(socket)=>{
