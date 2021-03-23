@@ -36,18 +36,20 @@ router.post('/submit-answer/:assignment_id/:student_id', upload.single('pdf'),as
             return res.send('something went wrong');
         client.upload(req.file.path).then(
             function (result) {
-                var pdfUrl = result.url;
-                var answer = {
-                    pdfLink: pdfUrl,
-                    student: req.user
-                }
-                req.user.assignmentsSubmitted.push(foundAssignment);
-                req.user.save();
-                foundAssignment.answers.push(answer);
-                foundAssignment.hasSubmitted = true;
-                foundAssignment.save();
-                
-                return res.redirect(`/student-home/${req.params.student_id}`);
+                Student.findById(req.params.student_id, (err, foundStudent) => {
+                    var pdfUrl = result.url;
+                    var answer = {
+                        pdfLink: pdfUrl,
+                        student: foundStudent
+                    }
+                    foundStudent.assignmentsSubmitted.push(foundAssignment);
+                    foundStudent.save();
+                    foundAssignment.answers.push(answer);
+                    foundAssignment.hasSubmitted = true;
+                    foundAssignment.save();
+                    
+                    return res.redirect(`/student-home/${req.params.student_id}`);
+                });
             },
             function (error) {
                 return res.send('something went wrong');

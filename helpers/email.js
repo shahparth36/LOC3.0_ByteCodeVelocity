@@ -15,6 +15,10 @@ function sendEmail(email,subjectOfEmail, textToBeSentInEmail) {
         to: email,
         subject: subjectOfEmail,
         text: textToBeSentInEmail
+    }, (err, info) => {
+        if (err)
+            console.log(err);
+        console.log(info);
     });
 
     transporter.close();
